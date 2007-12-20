@@ -20,6 +20,7 @@ Requires:	apache-conf >= 2.0.54
 Requires:	apache >= 2.0.54
 BuildRequires:  apache-devel >= 2.0.54
 BuildRequires:	file
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_delay is an output filter that does buffering until it is told to stop this
