@@ -43,16 +43,14 @@ This package contains the development API for the mod_delay apache module.
 
 %prep
 
-%setup -q -c -n %{mod_name}
+%setup -q -c -T -n %{mod_name}
 
 cp %{SOURCE0} .
 cp %{SOURCE1} .
 cp %{SOURCE2} .
 
-find . -type d -perm 0700 -exec chmod 755 {} \;
-find . -type d -perm 0555 -exec chmod 755 {} \;
-find . -type f -perm 0555 -exec chmod 755 {} \;
-find . -type f -perm 0444 -exec chmod 644 {} \;
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
 
 for i in `find . -type d -name CVS` `find . -type d -name .svn` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
     if [ -e "$i" ]; then rm -r $i; fi >&/dev/null
@@ -100,5 +98,3 @@ fi
 %files devel
 %defattr(-,root,root)
 %attr(0644,root,root) %{_includedir}/mod_delay.h
-
-
