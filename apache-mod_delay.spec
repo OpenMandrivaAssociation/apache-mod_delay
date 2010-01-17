@@ -5,8 +5,8 @@
 
 Summary:	Delay module for Apache2
 Name:		apache-%{mod_name}
-Version:	0
-Release:	%mkrel 8
+Version:	0.9.2
+Release:	%mkrel 1
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.heute-morgen.de/modules/mod_delay/
