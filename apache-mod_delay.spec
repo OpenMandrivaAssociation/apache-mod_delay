@@ -10,8 +10,9 @@ Release:	%mkrel 8
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.heute-morgen.de/modules/mod_delay/
-Source0:	%{mod_name}.tar.bz2
-Source1:	%{mod_conf}.bz2
+Source0:	http://www.heute-morgen.de/modules/mod_delay/mod_delay.c
+Source1:	http://www.heute-morgen.de/modules/mod_delay/mod_delay.h
+Source2:	%{mod_conf}
 Requires(pre): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):	apache-conf >= 2.0.54
@@ -42,7 +43,11 @@ This package contains the development API for the mod_delay apache module.
 
 %prep
 
-%setup -q -n %{mod_name}
+%setup -q -c -n %{mod_name}
+
+cp %{SOURCE0} .
+cp %{SOURCE1} .
+cp %{SOURCE2} .
 
 find . -type d -perm 0700 -exec chmod 755 {} \;
 find . -type d -perm 0555 -exec chmod 755 {} \;
@@ -70,7 +75,7 @@ install -d %{buildroot}%{_includedir}
 
 install -m0755 .libs/%{mod_so} %{buildroot}%{_libdir}/apache-extramodules/
 install -m0644 mod_delay.h %{buildroot}%{_includedir}/
-bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/httpd/modules.d/%{mod_conf}
+install -m0644 %{mod_conf} %{buildroot}%{_sysconfdir}/httpd/modules.d/%{mod_conf}
 
 %post
 if [ -f /var/lock/subsys/httpd ]; then
