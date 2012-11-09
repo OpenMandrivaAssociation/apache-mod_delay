@@ -1,0 +1,4 @@
+sources:
+  "A67_mod_delay.conf:"	d6267400866ce24dccb696e12b8e5f4f48f90ac3
+  "mod_delay.c:"	8663f951b68d681c55608a7621df68e147ad2e86
+  "mod_delay.h:"	ae72efaeaaefade0df54783f9d81f83bed674fad
