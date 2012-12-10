@@ -6,7 +6,7 @@
 Summary:	Delay module for Apache2
 Name:		apache-%{mod_name}
 Version:	0.9.2
-Release:	%mkrel 5
+Release:	5
 Group:		System/Servers
 License:	Apache License
 URL:		http://www.heute-morgen.de/modules/mod_delay/
@@ -21,7 +21,6 @@ Requires:	apache-conf >= 2.0.54
 Requires:	apache >= 2.0.54
 BuildRequires:  apache-devel >= 2.0.54
 BuildRequires:	file
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 mod_delay is an output filter that does buffering until it is told to stop this
@@ -62,10 +61,9 @@ find . -type f|xargs file|grep 'text'|cut -d: -f1|xargs perl -p -i -e 's/\r//'
 
 %build
 
-%{_sbindir}/apxs -c %{mod_name}.c
+%{_bindir}/apxs -c %{mod_name}.c
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sysconfdir}/httpd/modules.d
 install -d %{buildroot}%{_libdir}/apache-extramodules
@@ -88,13 +86,78 @@ if [ "$1" = "0" ]; then
 fi
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/modules.d/%{mod_conf}
 %attr(0755,root,root) %{_libdir}/apache-extramodules/%{mod_so}
 
 %files devel
-%defattr(-,root,root)
 %attr(0644,root,root) %{_includedir}/mod_delay.h
+
+
+%changelog
+* Sat Feb 11 2012 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-5mdv2012.0
++ Revision: 772616
+- rebuild
+
+* Tue May 24 2011 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-4
++ Revision: 678302
+- mass rebuild
+
+* Sun Oct 24 2010 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-3mdv2011.0
++ Revision: 587960
+- rebuild
+
+* Mon Mar 08 2010 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-2mdv2010.1
++ Revision: 516088
+- rebuilt for apache-2.2.15
+
+* Sun Jan 17 2010 Oden Eriksson <oeriksson@mandriva.com> 0.9.2-1mdv2010.1
++ Revision: 492870
+- nuke old cruft
+- fix build
+- actually this was 0.9.2
+- newer code
+
+* Sat Aug 01 2009 Oden Eriksson <oeriksson@mandriva.com> 0-8mdv2010.0
++ Revision: 406572
+- rebuild
+
+* Tue Jan 06 2009 Oden Eriksson <oeriksson@mandriva.com> 0-7mdv2009.1
++ Revision: 325692
+- rebuild
+
+* Mon Jul 14 2008 Oden Eriksson <oeriksson@mandriva.com> 0-6mdv2009.0
++ Revision: 234927
+- rebuild
+
+* Thu Jun 05 2008 Oden Eriksson <oeriksson@mandriva.com> 0-5mdv2009.0
++ Revision: 215567
+- fix rebuild
+
+* Fri Mar 07 2008 Oden Eriksson <oeriksson@mandriva.com> 0-4mdv2008.1
++ Revision: 181716
+- rebuild
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sat Sep 08 2007 Oden Eriksson <oeriksson@mandriva.com> 0-3mdv2008.0
++ Revision: 82553
+- rebuild
+
+
+* Sat Mar 10 2007 Oden Eriksson <oeriksson@mandriva.com> 0-2mdv2007.1
++ Revision: 140665
+- rebuild
+
+* Thu Nov 09 2006 Oden Eriksson <oeriksson@mandriva.com> 0-1mdv2007.1
++ Revision: 79402
+- Import apache-mod_delay
+
+* Tue Jul 18 2006 Oden Eriksson <oeriksson@mandriva.com> 0-1mdv2007.0
+- initial Mandriva package
+
