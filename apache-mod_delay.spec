@@ -9,7 +9,7 @@ Version:	0.9.2
 Release:	6
 Group:		System/Servers
 License:	Apache License
-URL:		http://www.heute-morgen.de/modules/mod_delay/
+URL:		https://www.heute-morgen.de/modules/mod_delay/
 Source0:	http://www.heute-morgen.de/modules/mod_delay/mod_delay.c
 Source1:	http://www.heute-morgen.de/modules/mod_delay/mod_delay.h
 Source2:	%{mod_conf}
